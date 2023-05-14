@@ -5,3 +5,28 @@ get back the value. The choice of language and implementation is up to you.
 Solution:
 I have written the code in shell script:
 
+###############################################################
+
+#!/bin/bash
+#defined a nested object
+object='{"x":{"y":{"z": "a"}}}'
+
+#writing a function to get value of a key
+function get_key_value() {
+    local object="$1"
+    local key="$2"
+    # Using Internal field seperator to split key into array of strings
+    IFS="/" read -ra keys <<< "$key"
+    # Traverse the JSON object with keys array
+    local obj="$object"
+    for k in "${keys[@]}"; do
+        obj=$(echo "$obj" | jq -r ".$k")
+    done
+    echo "$obj"
+}
+#Calling get_key_value function
+value=$(get_key_value "$object" "x/y/z")
+
+#print the value of passed object and key
+echo "$value"
+
