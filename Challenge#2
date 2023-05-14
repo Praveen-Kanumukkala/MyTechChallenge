@@ -3,7 +3,7 @@ We need to write code that will query the meta data of an instance within AWS or
 and provide a json formatted output. The choice of language and implementation is up to you.
 
 Solution:
-I have written the code in shell script:
+I have written the code in shell script. This code has to be run in EC2 instance to get its metadata in JSON format.
 
 ####################################################################
 
